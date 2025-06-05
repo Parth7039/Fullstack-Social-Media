@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "531140543329",
+    "project_id": "fullstack-social-media-fc9d7",
+    "storage_bucket": "fullstack-social-media-fc9d7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531140543329:android:e48b91d45b48d71c2c7b20",
+        "android_client_info": {
+          "package_name": "com.example.social_media_fullstack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTyotUx76An5YR2OG6EpcIcqDfy2loaN4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
