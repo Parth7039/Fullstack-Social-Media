@@ -4,7 +4,8 @@ import 'package:social_media_fullstack/features/auth/presentation/pages/login_pa
 import '../components/text_field.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  final void Function()? togglePages;
+  const RegisterPage({super.key, required this.togglePages});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -66,9 +67,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: const Text('Register'),
                         ),
                         const SizedBox(height: 10,),
-                        TextButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-                        }, child: Text('Already a member? Login now', style: TextStyle(color: Colors.black),))
+                        GestureDetector(
+                            onTap: widget.togglePages,
+                            child: Text('Already a member? Login now', style: TextStyle(color: Colors.black),))
                       ],
                     ),
                   )

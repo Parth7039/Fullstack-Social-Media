@@ -1,23 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_media_fullstack/features/auth/presentation/components/text_field.dart';
 import 'package:social_media_fullstack/features/auth/presentation/pages/register_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+import '../cubits/auth_cubit.dart';
 
+class LoginPage extends StatefulWidget {
+
+  final void Function()? togglePages;
+
+  const LoginPage({super.key, required this.togglePages});
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-
 class _LoginPageState extends State<LoginPage> {
 
   final emailcontroller = TextEditingController();
   final pwcontroller = TextEditingController();
 
+  void login(){
+    final String email = emailcontroller.text;
+    final String  pw = pwcontroller.text;
+
+    final authCubit = context.read<AuthCubit>();
+
+    if (email.isNotEmpty && pw.isNotEmpty){
+      authCubit.login(email, pw);
+    }
+    else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter both email and password')));
+    }
+  }
+
+  @override
+  void dispose() {
+    emailcontroller.dispose();
+    pwcontroller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SafeArea(
           child: Center(
             child: Padding(
@@ -43,16 +67,18 @@ class _LoginPageState extends State<LoginPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            TextButton(onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
-                            }, child: Text('Register here!!',style: TextStyle(color: Colors.black),)),
+                            GestureDetector(
+                                onTap: widget.togglePages,
+                                child: Text('Register here!!', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
 
                             TextButton(onPressed: (){}, child: Text('Forgot Password!!',style: TextStyle(color: Colors.black),)),
                           ],
                         ),
                         const SizedBox(height: 10,),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            login();
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(context).colorScheme.primary,
                             foregroundColor: Theme.of(context).colorScheme.onPrimary,
