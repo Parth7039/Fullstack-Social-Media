@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_fullstack/features/auth/presentation/components/text_field.dart';
-import 'package:social_media_fullstack/features/auth/presentation/pages/register_page.dart';
+import 'package:social_media_fullstack/features/auth/presentation/pages/login_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+import '../components/text_field.dart';
+
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
 
   final emailcontroller = TextEditingController();
   final pwcontroller = TextEditingController();
+  final namecontroller = TextEditingController();
+  final confirmpwcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SafeArea(
           child: Center(
             child: Padding(
@@ -30,26 +32,19 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface,
-                      borderRadius: BorderRadius.circular(15)
+                        color: Theme.of(context).colorScheme.surface,
+                        borderRadius: BorderRadius.circular(15)
                     ),
                     child: Column(
                       children: [
-                        Text('Login', style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
-                        MyTextField(controller: emailcontroller, hintText: 'Email', obscureText: false, prefixIcon: Icons.email_outlined,),
+                        Text('Register', style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+                        MyTextField(controller: namecontroller, hintText: 'Name', obscureText: false, prefixIcon: Icons.person,),
                         const SizedBox(height: 20,),
-                        MyTextField(controller: pwcontroller, hintText: 'Password', obscureText: true, prefixIcon: Icons.password,),
-                        const SizedBox(height: 5,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            TextButton(onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
-                            }, child: Text('Register here!!',style: TextStyle(color: Colors.black),)),
-
-                            TextButton(onPressed: (){}, child: Text('Forgot Password!!',style: TextStyle(color: Colors.black),)),
-                          ],
-                        ),
+                        MyTextField(controller: emailcontroller, hintText: 'Email', obscureText: true, prefixIcon: Icons.email_outlined,),
+                        const SizedBox(height: 20,),
+                        MyTextField(controller: pwcontroller, hintText: 'Password', obscureText: false, prefixIcon: Icons.password,),
+                        const SizedBox(height: 20,),
+                        MyTextField(controller: confirmpwcontroller, hintText: 'Confirm Password', obscureText: false, prefixIcon: Icons.password,),
                         const SizedBox(height: 10,),
                         ElevatedButton(
                           onPressed: () {},
@@ -68,8 +63,12 @@ class _LoginPageState extends State<LoginPage> {
                               letterSpacing: 1.1,
                             ),
                           ),
-                          child: const Text('Login'),
+                          child: const Text('Register'),
                         ),
+                        const SizedBox(height: 10,),
+                        TextButton(onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                        }, child: Text('Already a member? Login now', style: TextStyle(color: Colors.black),))
                       ],
                     ),
                   )

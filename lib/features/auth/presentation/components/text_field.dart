@@ -4,8 +4,15 @@ class MyTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final IconData prefixIcon;
 
-  const MyTextField({super.key, required this.controller, required this.hintText, required this.obscureText});
+  const MyTextField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    required this.obscureText,
+    required this.prefixIcon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +26,9 @@ class MyTextField extends StatelessWidget {
       decoration: InputDecoration(
         filled: true,
         fillColor: Theme.of(context).colorScheme.surfaceVariant,
-        prefixIcon: Icon(Icons.lock_outline, color: Theme.of(context).colorScheme.tertiary),
+        prefixIcon: Icon(prefixIcon, color: Theme.of(context).colorScheme.tertiary),
         hintText: hintText,
-        hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6)),
+        hintStyle: TextStyle(color: Colors.black),
         contentPadding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
