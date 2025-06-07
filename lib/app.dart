@@ -4,9 +4,8 @@ import 'package:social_media_fullstack/features/auth/data/firebase_auth_repo.dar
 import 'package:social_media_fullstack/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:social_media_fullstack/features/auth/presentation/cubits/auth_states.dart';
 import 'package:social_media_fullstack/themes/light_mode.dart';
-
 import 'features/auth/presentation/pages/auth_page.dart';
-import 'features/post/presentation/pages/home_page.dart';
+import 'features/home/presentation/pages/home_page.dart';
 
 class MainApp extends StatelessWidget {
 

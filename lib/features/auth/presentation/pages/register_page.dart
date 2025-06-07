@@ -71,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                         children: [
                           Text('Register', style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
-                          MyTextField(controller: namecontroller, hintText: 'Name', obscureText: false, prefixIcon: Icons.person,),
+                          MyTextField(controller: namecontroller, hintText: 'Enter Full Name', obscureText: false, prefixIcon: Icons.person,),
                           const SizedBox(height: 20,),
                           MyTextField(controller: emailcontroller, hintText: 'Email', obscureText: false, prefixIcon: Icons.email_outlined,),
                           const SizedBox(height: 20,),
