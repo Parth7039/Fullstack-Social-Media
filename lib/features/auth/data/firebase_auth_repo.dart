@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_media_fullstack/features/auth/domain/entities/app_user.dart';
 import 'package:social_media_fullstack/features/auth/domain/repos/auth_repo.dart';
@@ -5,7 +6,7 @@ import 'package:social_media_fullstack/features/auth/domain/repos/auth_repo.dart
 class FirebaseAuthRepo implements AuthRepo {
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   @override
   Future<AppUser?> getCurrentUser() async {
    //get current logged in user from database
@@ -35,6 +36,7 @@ class FirebaseAuthRepo implements AuthRepo {
           name: ''
       );
 
+
       return user;
     }
     catch(e){
@@ -59,6 +61,8 @@ class FirebaseAuthRepo implements AuthRepo {
           email: email,
           name: name,
       );
+
+      await firebaseFirestore.collection("users").doc(user.uid).set(user.tojson());
 
       return user;
     }
