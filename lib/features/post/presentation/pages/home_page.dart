@@ -22,6 +22,9 @@ class _HomePageState extends State<HomePage> {
           }, icon: const Icon(Icons.logout))
         ],
       ),
+      body: Center(
+        child: Text('hello'),
+      ),
     );
   }
 }
