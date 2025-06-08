@@ -32,6 +32,7 @@ class FirebaseProfileRepo implements ProfileRepo{
       await firebaseFirestore.collection('users').doc(updatedProfile.uid).update({
         'bio': updatedProfile.bio,
         'profileImageUrl': updatedProfile.profileImageUrl,
+        //add more if updation is needed
       });
     } catch (e){
       throw Exception(e);
