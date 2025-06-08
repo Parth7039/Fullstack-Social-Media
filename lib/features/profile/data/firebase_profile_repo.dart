@@ -34,7 +34,7 @@ class FirebaseProfileRepo implements ProfileRepo{
         'profileImageUrl': updatedProfile.profileImageUrl,
       });
     } catch (e){
-
+      throw Exception(e);
     }
   }
 }
