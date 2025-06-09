@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 import 'package:social_media_fullstack/features/auth/presentation/cubits/auth_cubit.dart';
 
 import '../../../profile/presentation/pages/profile_page.dart';
@@ -44,14 +45,14 @@ class MyDrawer extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Column(
-                      children: const [
-                        CircleAvatar(
+                      children: [
+                        const CircleAvatar(
                           radius: 40,
                           backgroundColor: Colors.white,
                           child: Icon(Icons.person, size: 40, color: Colors.grey),
                         ),
-                        SizedBox(height: 10),
-                        CircularProgressIndicator(),
+                        const SizedBox(height: 10),
+                        JumpingDotsProgressIndicator(fontSize: 30, milliseconds: 200,),
                       ],
                     );
                   } else if (snapshot.hasError) {
@@ -101,7 +102,9 @@ class MyDrawer extends StatelessWidget {
                   }),
                   MyDrawerTile(title: "P R O F I L E", icon: Icons.person, onTap: () {
                     Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+                    final user = context.read<AuthCubit>().currentUser;
+                    String? uid = user!.uid;
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(uid: uid)));
                   }),
                   MyDrawerTile(title: "S E T T I N G S", icon: Icons.settings, onTap: () {
                     Navigator.pop(context);
