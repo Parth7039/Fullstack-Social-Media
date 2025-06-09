@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:social_media_fullstack/features/profile/domain/repos/profile_repo.dart';
-
 import '../domain/entities/profile_user.dart';
 
 class FirebaseProfileRepo implements ProfileRepo{
