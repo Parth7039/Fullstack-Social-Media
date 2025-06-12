@@ -45,7 +45,13 @@ class _ProfilePageState extends State<ProfilePage> {
               body: Center(
                 child: Column(
                   children: [
-                    Text(user.email)
+                    Text(user.email),
+                    Container(
+                      decoration: BoxDecoration(),
+                      child: Center(
+                        child: Icon(Icons.person),
+                      ),
+                    )
                   ],
                 ),
               ),
