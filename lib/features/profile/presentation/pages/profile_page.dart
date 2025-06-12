@@ -52,6 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             );
           }
+
           //no profile found
           else {
             return Scaffold(
