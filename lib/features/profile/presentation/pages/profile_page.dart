@@ -37,9 +37,17 @@ class _ProfilePageState extends State<ProfilePage> {
         builder: (context, state) {
           //loaded
           if (state is ProfileLoaded) {
+            final user = state.profileUser;
             return Scaffold(
               appBar: AppBar(
-                title: Text(currentUser!.email),
+                title: Text(user.name),
+              ),
+              body: Center(
+                child: Column(
+                  children: [
+                    Text(user.email)
+                  ],
+                ),
               ),
             );
           }
